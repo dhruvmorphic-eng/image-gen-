@@ -14,6 +14,6 @@ Browser screenshots are in ignored `test-results/desktop-workspace.png` and `tes
 
 No real OpenAI generation or edit request has been completed. No API key was supplied. The official SDK integration is exercised through an injected test client; there is no mock-generation path in the app.
 
-Local database behavior is tested with SQLite. PostgreSQL's production adapter and Vercel's durable workflow are implemented and compile successfully, but live hosted database/generation behavior requires a configured `DATABASE_URL` and `OPENAI_API_KEY`. Missing production storage produces setup required and never falls back to ephemeral disk.
+Local database behavior is tested with SQLite. The production deployment at https://image-studio-rho-nine.vercel.app was also verified against its connected Neon PostgreSQL database: anonymous workspace bootstrap, canvas creation and renaming, persistence across requests, reference upload, byte-identical image download, and rejection of unauthenticated history access all passed. The temporary smoke-test canvas was removed. Vercel Workflow compiles and deploys successfully; actual paid generation/workflow execution still requires `OPENAI_API_KEY`. Missing production storage produces setup required and never falls back to ephemeral disk.
 
 The README describes browser-local identity (no login, no cross-device recovery), production configuration, and failure/charge semantics. Deployment status and URLs are reported separately after publication.
