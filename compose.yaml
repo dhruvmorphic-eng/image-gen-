@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_PATH: /data/studio.sqlite
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - studio-data:/data
+    restart: unless-stopped
+    init: true
+  worker:
+    build: .
+    command: npm run worker
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      DATABASE_PATH: /data/studio.sqlite
+    volumes:
+      - studio-data:/data
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 11m
+volumes:
+  studio-data:

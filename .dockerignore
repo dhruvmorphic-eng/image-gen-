@@ -1,0 +1,12 @@
+node_modules
+.next
+.env
+.env.*
+data
+.git
+test-results
+playwright-report
+
+.vercel
+.workflow-data
+app/.well-known
