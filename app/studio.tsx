@@ -1,10 +1,10 @@
 "use client";
+import { SettingMenu } from "./setting-menu";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowUp,
   ArrowUpRight,
   Check,
-  ChevronDown,
   Copy,
   Download,
   ImagePlus,
@@ -934,57 +934,50 @@ export default function Studio() {
                   <Sparkles size={14} />
                   GPT Image 2
                 </span>
-                <label className="select-wrap">
-                  <span className="ratio-icon" />
-                  <select
-                    aria-label="Aspect ratio"
-                    value={draft?.size || "1024x1024"}
-                    disabled={busy}
-                    onChange={(e) => update({ size: e.target.value })}
-                  >
-                    {(
-                      model?.sizes || [
-                        { value: "1024x1024", label: "Square", ratio: "1:1" },
-                      ]
-                    ).map((size) => (
-                      <option key={size.value} value={size.value}>
-                        {size.label} · {size.ratio}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown size={12} />
-                </label>
-                <label className="select-wrap quality-select">
-                  <select
-                    aria-label="Quality"
-                    value={draft?.quality || "medium"}
-                    disabled={busy}
-                    onChange={(e) => update({ quality: e.target.value })}
-                  >
-                    {(model?.qualities || ["medium", "high"]).map((quality) => (
-                      <option key={quality} value={quality}>
-                        {quality[0].toUpperCase() + quality.slice(1)}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown size={12} />
-                </label>
-                <label className="select-wrap count-select">
-                  <Layers3 size={13} />
-                  <select
-                    aria-label="Image count"
-                    value={draft?.count || 1}
-                    disabled={busy}
-                    onChange={(e) => update({ count: Number(e.target.value) })}
-                  >
-                    {[1, 2, 3, 4].map((n) => (
-                      <option value={n} key={n}>
-                        {n} {n === 1 ? "image" : "images"}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown size={12} />
-                </label>
+                <SettingMenu
+                  label="Aspect ratio"
+                  value={draft?.size || "1024x1024"}
+                  disabled={busy}
+                  icon={<span className="ratio-icon" />}
+                  onChange={(size) => update({ size })}
+                  options={(
+                    model?.sizes || [
+                      { value: "1024x1024", label: "Square", ratio: "1:1" },
+                    ]
+                  ).map((size) => ({
+                    value: size.value,
+                    label: `${size.label} · ${size.ratio}`,
+                    detail: `${size.value.replace("x", " × ")} px`,
+                  }))}
+                />
+                <SettingMenu
+                  label="Quality"
+                  value={draft?.quality || "medium"}
+                  disabled={busy}
+                  icon={<Settings2 size={14} />}
+                  onChange={(quality) => update({ quality })}
+                  options={(model?.qualities || ["medium", "high"]).map(
+                    (quality) => ({
+                      value: quality,
+                      label: quality[0].toUpperCase() + quality.slice(1),
+                      detail:
+                        quality === "high"
+                          ? "More detail, higher cost"
+                          : "Great detail, balanced cost",
+                    }),
+                  )}
+                />
+                <SettingMenu
+                  label="Image count"
+                  value={String(draft?.count || 1)}
+                  disabled={busy}
+                  icon={<Layers3 size={14} />}
+                  onChange={(count) => update({ count: Number(count) })}
+                  options={[1, 2, 3, 4].map((n) => ({
+                    value: String(n),
+                    label: `${n} ${n === 1 ? "image" : "images"}`,
+                  }))}
+                />
               </div>
               <button
                 className="generate-button"

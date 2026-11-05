@@ -1713,3 +1713,427 @@ button {
     font-size: 11px;
   }
 }
+
+/* Refined studio rhythm: readable controls and a quiet, playful workspace. */
+:root {
+  --muted: #a0a09a;
+}
+.header {
+  padding-inline: 24px;
+}
+.internal-tag {
+  color: #92928a;
+  font-size: 9px;
+}
+.new-session {
+  padding: 9px 12px;
+  border: 1px solid #33352e;
+  border-radius: 8px;
+  background: #1c1e18;
+  color: #ddecad;
+}
+.new-session:hover {
+  background: #292d21;
+}
+.sidebar {
+  padding: 24px 14px 18px;
+}
+.sidebar-heading {
+  color: #a0a097;
+}
+.session-row {
+  min-height: 44px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+.session-row:hover {
+  background: #1c1d19;
+}
+.session-row.selected,
+.session-item.selected {
+  background: #22251e;
+  border-color: #39402c;
+}
+.session-item .session-row,
+.session-item:hover .session-row {
+  padding-right: 62px;
+}
+.session-tools {
+  top: 9px;
+  border-radius: 6px;
+  background: #262923;
+}
+.session-tools button {
+  padding: 6px;
+}
+.session-empty {
+  color: #91918a;
+}
+.session-empty small,
+.sidebar-foot small {
+  color: #8a8a82;
+  font-size: 11px;
+}
+.sidebar-foot {
+  line-height: 1.5;
+  font-size: 12px;
+}
+.workspace-bar {
+  height: 64px;
+  padding-inline: 28px;
+  font-size: 13px;
+}
+.workspace-bar .view-switch {
+  border-radius: 9px;
+  padding: 4px;
+}
+.view-switch button {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #a0a099;
+}
+.view-switch button.active {
+  background: #30322c;
+  color: #eff0e9;
+  box-shadow: 0 1px 4px #0004;
+}
+.empty-state {
+  padding: 24px 24px 32px;
+  min-height: 420px;
+}
+.playful-art {
+  flex-shrink: 0;
+  width: 220px;
+  height: 155px;
+  margin-bottom: 28px;
+  transform: scale(0.86);
+}
+.playful-empty h1 {
+  font-size: clamp(28px, 2.8vw, 40px);
+  letter-spacing: -1.4px;
+  margin-bottom: 12px;
+}
+.eyebrow {
+  font-size: 9px;
+  margin-bottom: 12px;
+}
+.empty-state > p {
+  color: #a0a099;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.idea-buttons {
+  margin-top: 22px;
+  gap: 8px;
+}
+.idea-buttons button {
+  font-size: 11px;
+  padding: 10px 12px;
+  border-radius: 20px;
+  color: #b1b2a8;
+  background: #171815;
+  border-color: #32352c;
+}
+.composer-area {
+  width: min(1040px, 100%);
+  padding: 0 28px 18px;
+}
+.composer {
+  border-radius: 18px;
+  border-color: #3b3d35;
+  background: #1b1c19;
+  box-shadow: 0 12px 36px #0003;
+}
+.composer:focus-within {
+  border-color: #879365;
+  box-shadow:
+    0 0 0 3px #ddecad08,
+    0 12px 36px #0003;
+}
+.composer textarea {
+  height: 94px;
+  font-size: 14px;
+  padding: 20px 20px 12px;
+}
+.composer-toolbar {
+  padding: 0 12px 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.settings {
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.attach-button {
+  height: 36px;
+  width: 36px;
+  border-radius: 8px;
+  background: #262822;
+  color: #c3c8b8;
+}
+.model-label {
+  font-size: 11px;
+  padding-inline: 4px 8px;
+}
+.toolbar-divider {
+  margin-inline: 2px;
+}
+.generate-button {
+  background: #ddecad;
+  border-color: #ddecad;
+  padding: 12px 16px;
+  font-size: 12px;
+  border-radius: 10px;
+  min-height: 40px;
+  margin-left: auto;
+}
+.generate-button:hover:not(:disabled) {
+  background: #e8f7bd;
+}
+.generate-button:disabled {
+  background: #30352a;
+  color: #929c80;
+  border-color: #3d4434;
+}
+.composer-caption {
+  font-size: 10px;
+  color: #8e8f86;
+  padding-top: 10px;
+}
+.keyboard-hint {
+  font-size: 10px;
+}
+.setup-banner {
+  border: 1px solid #2c3025;
+  border-radius: 9px;
+  background: #191c15;
+  padding: 10px 12px;
+  margin: 8px 0 12px;
+  font-size: 11px;
+  color: #a4ad92;
+}
+.setup-banner > button {
+  font-size: 11px;
+  color: #d0dbb9;
+}
+.setting-menu {
+  position: relative;
+}
+.setting-trigger {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #373a31;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #252720;
+  color: #d0d2c7;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.setting-trigger:hover,
+.setting-trigger[aria-expanded="true"] {
+  border-color: #717c57;
+  background: #303529;
+}
+.setting-trigger > svg:last-child {
+  color: #939a83;
+  transition: transform 0.15s;
+}
+.chevron-open {
+  transform: rotate(180deg);
+}
+.setting-options {
+  position: absolute;
+  z-index: 30;
+  bottom: calc(100% + 10px);
+  right: 0;
+  width: 224px;
+  padding: 6px;
+  border: 1px solid #45493c;
+  border-radius: 12px;
+  background: #22251e;
+  box-shadow: 0 12px 40px #0009;
+  max-height: min(380px, 55dvh);
+  overflow-y: auto;
+}
+.setting-heading {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9da58d;
+  padding: 9px 10px;
+}
+.setting-options button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border-radius: 7px;
+  font-size: 12px;
+  color: #d8dcce;
+}
+.setting-options button small {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #9ca58d;
+}
+.setting-options button:hover,
+.setting-options button:focus-visible {
+  background: #343b2b;
+  outline: none;
+}
+.setting-options button[aria-selected="true"] {
+  background: #303926;
+  color: #e1f0b6;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #ddecad;
+}
+.gallery {
+  padding-inline: 28px;
+}
+.image-card {
+  border: 1px solid #2b2e25;
+  padding: 8px;
+  border-radius: 14px;
+  background: #171914;
+}
+.image-card-caption {
+  padding: 12px 5px 2px;
+}
+.image-card-caption p {
+  font-size: 13px;
+}
+.image-card-caption small {
+  font-size: 11px;
+  color: #989d8d;
+}
+.image-card .result-actions {
+  padding: 0 3px 4px;
+}
+.result-actions > button,
+.result-actions > a {
+  font-size: 11px;
+  min-height: 34px;
+  border-radius: 7px;
+}
+@media (max-height: 800px) and (min-width: 761px) {
+  .empty-state {
+    min-height: 330px;
+    padding-block: 12px 24px;
+  }
+  .playful-art {
+    height: 115px;
+    margin-top: -12px;
+    margin-bottom: 22px;
+    transform: scale(0.65);
+    transform-origin: top center;
+  }
+  .doodle-caption {
+    bottom: -50px;
+  }
+  .playful-empty h1 {
+    font-size: 30px;
+  }
+  .idea-buttons {
+    margin-top: 16px;
+  }
+}
+@media (max-width: 760px) {
+  .header {
+    padding-inline: 16px;
+  }
+  .new-session {
+    font-size: 11px;
+    padding: 8px;
+  }
+  .workspace-bar {
+    padding-inline: 14px;
+    font-size: 11px;
+    gap: 6px;
+  }
+  .workspace-bar > div > span:first-of-type {
+    max-width: 100px;
+  }
+  .view-switch button {
+    font-size: 10px;
+    padding: 7px;
+  }
+  .composer-area {
+    padding: 0 12px 12px;
+  }
+  .composer textarea {
+    font-size: 14px;
+    height: 82px;
+    padding: 16px;
+  }
+  .settings {
+    width: 100%;
+    gap: 6px;
+  }
+  .model-label {
+    font-size: 11px;
+  }
+  .setting-trigger {
+    min-height: 38px;
+    padding: 8px;
+    font-size: 11px;
+  }
+  .settings .setting-menu:first-of-type {
+    margin-left: auto;
+  }
+  .setting-options {
+    width: 212px;
+  }
+  .settings .setting-menu:nth-last-child(2) .setting-options {
+    left: 0;
+    right: auto;
+  }
+  .generate-button {
+    min-height: 42px;
+    width: 100%;
+  }
+  .setup-banner {
+    font-size: 10px;
+    padding: 9px;
+  }
+  .composer-caption {
+    font-size: 8px;
+  }
+  .empty-state {
+    min-height: 330px;
+    padding: 14px 18px 24px;
+  }
+  .playful-art {
+    height: 125px;
+    margin-bottom: 12px;
+    transform: scale(0.7);
+    transform-origin: center;
+  }
+  .playful-empty h1 {
+    font-size: 28px;
+  }
+  .empty-state > p {
+    font-size: 12px;
+  }
+  .idea-buttons button {
+    font-size: 10px;
+  }
+  .gallery {
+    padding-inline: 14px;
+  }
+}
+@media (max-width: 760px) {
+  .doodle-caption {
+    bottom: -32px;
+  }
+}

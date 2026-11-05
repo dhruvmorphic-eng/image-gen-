@@ -32,24 +32,29 @@ test("desktop: no login or model menu; references and separate canvases persist"
   );
   await page.getByRole("button", { name: "Dream up a product" }).click();
   await expect(page.getByLabel("Image prompt")).toHaveValue(/sculptural lamp/);
-  await page.getByLabel("Quality").selectOption("high");
-  await page.getByLabel("Image count").selectOption("3");
-  await page.getByLabel("Aspect ratio").selectOption("1536x864");
+  await page.getByRole("button", { name: "Quality", exact: true }).click();
+  await page.getByRole("option", { name: "High", exact: false }).click();
+  await page.getByRole("button", { name: "Image count", exact: true }).click();
+  await page.getByRole("option", { name: "3 images", exact: true }).click();
+  await page.getByRole("button", { name: "Aspect ratio", exact: true }).click();
+  await page
+    .getByRole("option", { name: "Widescreen · 16:9", exact: false })
+    .click();
   await page.screenshot({
     path: "test-results/desktop-workspace.png",
     fullPage: true,
   });
-  await page
-    .locator("input[type=file]")
-    .setInputFiles({
-      name: "reference.png",
-      mimeType: "image/png",
-      buffer: await image(),
-    });
+  await page.locator("input[type=file]").setInputFiles({
+    name: "reference.png",
+    mimeType: "image/png",
+    buffer: await image(),
+  });
   await expect(page.getByAltText("Reference 1", { exact: true })).toBeVisible();
   await page.reload();
   await expect(page.getByAltText("Reference 1", { exact: true })).toBeVisible();
-  await expect(page.getByLabel("Image count")).toHaveValue("3");
+  await expect(
+    page.getByRole("button", { name: "Image count", exact: true }),
+  ).toContainText("3 images");
   await page.locator(".session-item").hover();
   await page.getByRole("button", { name: "Rename Fresh canvas" }).click();
   await page.getByLabel("Canvas name").fill("Lamp ideas");
@@ -84,7 +89,8 @@ test("mobile: compact controls and no horizontal overflow", async ({
   await expect(page.getByText("YOUR CANVASES", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Collapse sidebar" }).click();
   await page.getByLabel("Image prompt").fill("A tiny city made of paper");
-  await page.getByLabel("Image count").selectOption("4");
+  await page.getByRole("button", { name: "Image count", exact: true }).click();
+  await page.getByRole("option", { name: "4 images", exact: true }).click();
   await expect(
     page.getByRole("button", { name: "Generate", exact: true }),
   ).toBeDisabled();
@@ -208,4 +214,29 @@ test("multiple saved originals appear in grid and chat, and an individual image 
   await expect(
     page.getByRole("button", { name: "Open large image preview" }),
   ).toHaveCount(2);
+});
+
+test("settings support keyboard selection, escape and outside dismissal", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await open(page);
+  const trigger = page.getByRole("button", { name: "Quality", exact: true });
+  await trigger.focus();
+  await page.keyboard.press("ArrowDown");
+  await expect(page.getByRole("listbox", { name: "Quality" })).toBeVisible();
+  await page.keyboard.press("End");
+  await page.keyboard.press("Enter");
+  await expect(trigger).toContainText("High");
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await page.keyboard.press("Escape");
+  await expect(trigger).toBeFocused();
+  await trigger.click();
+  await page.getByLabel("Image prompt").click();
+  await expect(page.getByRole("listbox")).toHaveCount(0);
+  await page.getByRole("button", { name: "Aspect ratio", exact: true }).click();
+  const menu = await page.getByRole("listbox").boundingBox();
+  expect(menu!.y).toBeGreaterThan(0);
+  await page.screenshot({ path: "test-results/settings-desktop.png" });
 });
